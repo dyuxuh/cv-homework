@@ -1,0 +1,28 @@
+name: Deploy PDF
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t cv .
+
+      - name: Extract PDF
+        run: |
+          docker create --name temp cv
+          docker cp temp:/cv/CV/main.pdf ./resume.pdf
+          docker rm temp
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .
