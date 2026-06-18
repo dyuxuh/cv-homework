@@ -17,6 +17,8 @@ WORKDIR /cv
 
 COPY . .
 
+WORKDIR /cv/CV
+
 RUN pdflatex -interaction=nonstopmode main.tex
 RUN pdflatex -interaction=nonstopmode main.tex
 
