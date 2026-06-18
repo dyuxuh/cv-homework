@@ -33,7 +33,9 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git checkout --orphan gh-pages
           git rm -rf .
-          cp resume.pdf .
-          git add resume.pdf
+          # Создаём отдельную папку для PDF
+          mkdir -p public
+          cp resume.pdf public/
+          git add public/resume.pdf
           git commit -m "Deploy resume PDF"
           git push origin gh-pages --force
