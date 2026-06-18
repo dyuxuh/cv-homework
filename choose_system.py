@@ -3,7 +3,7 @@ import platform
 import sys
 
 def main():
-    name = "Дуюхин Александр"
+    name = "Чекунов Анзор"
     system = platform.system()
     version = platform.version()
     
